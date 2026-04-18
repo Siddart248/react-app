@@ -14,6 +14,7 @@ function Todoinput({ addTodo }) {
         <div>
             <input 
                 type="text" 
+                
                 placeholder="Enter your todo" 
                 value={todo} 
                 onChange={e => setTodo(e.target.value)} 
