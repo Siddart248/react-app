@@ -4,22 +4,25 @@ function Todoinput({ addTodo }) {
     const [todo, setTodo] = useState("");
 
     const handleAdd = () => {
-        if (addTodo) {
-            addTodo(todo);
+        if (todo.trim()) {
+            addTodo(todo.trim());
         }
         setTodo("");
     };
 
     return (
-        <div>
+        <div className="input-container">
             <input 
                 type="text" 
-                
-                placeholder="Enter your todo" 
+                className="todo-input"
+                placeholder="Enter your todo..." 
                 value={todo} 
-                onChange={e => setTodo(e.target.value)} 
+                onChange={e => setTodo(e.target.value)}
+                onKeyDown={e => {
+                    if (e.key === 'Enter') handleAdd();
+                }} 
             />
-            <button onClick={handleAdd}>Add Todo</button>
+            <button className="add-button" onClick={handleAdd}>Add Todo</button>
         </div>
     );
 }
