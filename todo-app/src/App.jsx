@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 import Header from "./components/Header"
 import Todoinput from "./components/Todoinput"  
 
@@ -9,17 +10,18 @@ function App() {
         if (!todo) return;
         setTodos([...todos, todo]);
     };
+    
+    const handledeleteTodo = (index) => {
+        const newTodos = todos.filter((_,i) => i !== index);
+        setTodos(newTodos);
+    };
 
     return (
-        <>
+        <div className="app-container">
             <Header />
             <Todoinput addTodo={addTodo} />
-            <ul>
-                {todos.map((t, index) => (
-                    <li key={index}>{t}</li>
-                ))}
-            </ul>
-        </>
+            <TodoList todos={todos} deleteTodo={handledeleteTodo} />
+        </div>
     )
 }
 
